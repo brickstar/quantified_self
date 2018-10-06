@@ -34,7 +34,7 @@ describe "Foods API" do
   end
 
   it "returns 404 if record not found" do
-    get "api/v1/foods/100"
+    get "/api/v1/foods/100"
 
     expect(response.status).to eq(404)
   end

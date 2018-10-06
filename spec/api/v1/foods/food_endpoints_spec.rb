@@ -75,6 +75,19 @@ describe "Foods API" do
     expect(food[:calories]).to eq(calories.to_i)
   end
 
+  xit 'can update an existing food with only one attribute given' do
+    food = create(:food)
+
+    name = "Mint"
+
+    patch "/api/v1/foods/#{food.id}", params: { "food": { "name": name } }
+
+    food = JSON.parse(response.body, symbolize_names: true)
+
+    expect(food[:id]).to eq(Food.last.id)
+    expect(food[:name]).to eq(name)
+  end
+
   it 'returns 404 status if not updated' do
     food = create(:food)
 

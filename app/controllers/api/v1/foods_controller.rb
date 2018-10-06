@@ -26,7 +26,7 @@ class Api::V1::FoodsController < ApplicationController
     if food.update(name: params[:food][:name], calories: params[:food][:calories])
       render json: food
     else
-      render status: 404
+      render status: 400
     end
   end
 end

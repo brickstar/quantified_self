@@ -68,6 +68,8 @@ describe "Foods API" do
 
     patch "/api/v1/foods/#{food.id}", params: { "food": { "name": name, "calories": calories } }
 
+    expect(response).to be_successful
+
     food = JSON.parse(response.body, symbolize_names: true)
 
     expect(food[:id]).to eq(Food.last.id)
@@ -82,7 +84,20 @@ describe "Foods API" do
 
     patch "/api/v1/foods/#{food.id}", params: { "food": { "name": name } }
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(400)
   end
+
+  it 'can delete an existing food' do
+    foods = create_list(:food, 3)
+    food = foods.first
+
+    expect(Food.count).to eq(3)
+
+    delete "/api/v1/foods/#{foods.first.id}"
+
+    expect(response.status).to eq(204)
+    expect(Food.count).to eq(2)
+  end
+
 
 end

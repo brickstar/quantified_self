@@ -38,4 +38,17 @@ describe "Foods API" do
 
     expect(response.status).to eq(404)
   end
+
+  it 'can create a new food' do
+    name = "Mint"
+    calories = "14"
+
+    post "/api/v1/foods", params: { "food": { "name": name, "calories": calories } }
+
+    food = JSON.parse(response.body, symbolize_names: true)
+
+    expect(food[:id]).to eq(Food.last.id)
+    expect(food[:name]).to eq(name)
+    expect(food[:calories]).to eq(calories.to_i)
+  end
 end

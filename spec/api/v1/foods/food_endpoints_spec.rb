@@ -51,4 +51,12 @@ describe "Foods API" do
     expect(food[:name]).to eq(name)
     expect(food[:calories]).to eq(calories.to_i)
   end
+
+  it 'returns 400 status if not created' do
+    name = "Mint"
+
+    post "/api/v1/foods", params: { "food": { "name": name } }
+
+    expect(response.status).to eq(400)
+  end
 end

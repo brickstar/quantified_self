@@ -39,7 +39,7 @@ describe "Foods API" do
     expect(response.status).to eq(404)
   end
 
-  it 'can create a new food' do
+  it 'creates a new food' do
     name = "Mint"
     calories = "14"
 
@@ -60,7 +60,7 @@ describe "Foods API" do
     expect(response.status).to eq(400)
   end
 
-  it 'can update an existing food' do
+  it 'updates an existing food' do
     food = create(:food)
 
     name = "Mint"
@@ -87,7 +87,7 @@ describe "Foods API" do
     expect(response.status).to eq(400)
   end
 
-  it 'can delete an existing food' do
+  it 'deletes an existing food' do
     foods = create_list(:food, 3)
     food = foods.first
 

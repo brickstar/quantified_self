@@ -75,4 +75,14 @@ describe "Foods API" do
     expect(food[:calories]).to eq(calories.to_i)
   end
 
+  it 'returns 404 status if not updated' do
+    food = create(:food)
+
+    name = 1
+
+    patch "/api/v1/foods/#{food.id}", params: { "food": { "name": name } }
+
+    expect(response.status).to eq(404)
+  end
+
 end

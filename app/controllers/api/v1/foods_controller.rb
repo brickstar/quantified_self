@@ -29,4 +29,14 @@ class Api::V1::FoodsController < ApplicationController
       render status: 400
     end
   end
+
+  def destroy
+    food = Food.find_by(id: params[:id])
+    if food.nil?
+      render status: 404
+    else
+      food.destroy
+      render status: 204
+    end
+  end
 end

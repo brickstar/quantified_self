@@ -99,5 +99,10 @@ describe "Foods API" do
     expect(Food.count).to eq(2)
   end
 
+  it 'returns 404 status if not deleted' do
+    delete "/api/v1/foods/100"
+
+    expect(response.status).to eq(404)
+  end
 
 end

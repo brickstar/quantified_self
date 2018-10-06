@@ -59,4 +59,50 @@ describe "Foods API" do
 
     expect(response.status).to eq(400)
   end
+
+  it 'can update an existing food' do
+    food = create(:food)
+
+    name = "Mint"
+    calories = "14"
+
+    patch "/api/v1/foods/#{food.id}", params: { "food": { "name": name, "calories": calories } }
+
+    expect(response).to be_successful
+
+    food = JSON.parse(response.body, symbolize_names: true)
+
+    expect(food[:id]).to eq(Food.last.id)
+    expect(food[:name]).to eq(name)
+    expect(food[:calories]).to eq(calories.to_i)
+  end
+
+  it 'returns 404 status if not updated' do
+    food = create(:food)
+
+    name = 1
+
+    patch "/api/v1/foods/#{food.id}", params: { "food": { "name": name } }
+
+    expect(response.status).to eq(400)
+  end
+
+  it 'can delete an existing food' do
+    foods = create_list(:food, 3)
+    food = foods.first
+
+    expect(Food.count).to eq(3)
+
+    delete "/api/v1/foods/#{foods.first.id}"
+
+    expect(response.status).to eq(204)
+    expect(Food.count).to eq(2)
+  end
+
+  it 'returns 404 status if not deleted' do
+    delete "/api/v1/foods/100"
+
+    expect(response.status).to eq(404)
+  end
+
 end

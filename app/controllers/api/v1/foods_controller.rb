@@ -20,4 +20,23 @@ class Api::V1::FoodsController < ApplicationController
       render status: 400
     end
   end
+
+  def update
+    food = Food.find_by(id: params[:id])
+    if food.update(name: params[:food][:name], calories: params[:food][:calories])
+      render json: food
+    else
+      render status: 400
+    end
+  end
+
+  def destroy
+    food = Food.find_by(id: params[:id])
+    if food.nil?
+      render status: 404
+    else
+      food.destroy
+      render status: 204
+    end
+  end
 end

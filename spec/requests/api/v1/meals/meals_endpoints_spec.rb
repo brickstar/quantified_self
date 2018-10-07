@@ -36,18 +36,36 @@ describe "Meals API" do
     expect(meal).to_not have_key(:updated_at)
   end
 
-  it "sends a 404 if meal not found" do
+  it "returns a 404 if meal not found" do
     get "/api/v1/meals/100/foods"
 
     expect(response.status).to eq(404)
   end
 
-  it "can add food to a meal" do
+  it "adds food to a meal" do
     expect(@meals.first.foods.count).to eq(3)
 
     post "/api/v1/meals/#{@meals.first.id}/foods/#{@food.id}"
 
     expect(@meals.first.foods.count).to eq(4)
+
+    json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response.status).to eq(201)
+
+    expect(json[:message]).to eq("Successfully added #{@food.name} to #{@meals.first.name}")
+  end
+
+  it "returns a 404 if meal cannot be found" do
+    post "/api/v1/meals/100/foods/#{@food.id}"
+
+    expect(response.status).to eq(404)
+  end
+
+  it "returns a 404 if food cannot be found" do
+    post "/api/v1/meals/#{@meals.first.id}/foods/100"
+
+    expect(response.status).to eq(404)
   end
 
 end

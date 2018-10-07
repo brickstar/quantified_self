@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :foods
       resources :meals, only: [:index, :show] do
-        resources :foods, only: [:index], to: "meals#show"
+        get '/foods', to: "meals#show"
       end
     end
   end

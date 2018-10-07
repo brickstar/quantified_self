@@ -56,13 +56,13 @@ describe "Meals API" do
     expect(json[:message]).to eq("Successfully added #{@food.name} to #{@meals.first.name}")
   end
 
-  it "returns a 404 if meal cannot be found" do
+  it "returns a 404 if meal not found" do
     post "/api/v1/meals/100/foods/#{@food.id}"
 
     expect(response.status).to eq(404)
   end
 
-  it "returns a 404 if food cannot be found" do
+  it "returns a 404 if food not found" do
     post "/api/v1/meals/#{@meals.first.id}/foods/100"
 
     expect(response.status).to eq(404)
@@ -70,8 +70,9 @@ describe "Meals API" do
 
   it "deletes a food from a meal" do
     expect(@meals.first.foods.count).to eq(3)
+    food = @meals.first.foods.first
 
-    delete "/api/v1/meals/#{@meals.first.id}/foods/#{@food.id}"
+    delete "/api/v1/meals/#{@meals.first.id}/foods/#{food.id}"
 
     expect(@meals.first.foods.count).to eq(2)
 
@@ -79,7 +80,19 @@ describe "Meals API" do
 
     expect(response.status).to eq(201)
 
-    expect(json[:message]).to eq("Successfully added #{@food.name} to #{@meals.first.name}")
+    expect(json[:message]).to eq("Successfully deleted #{food.name} to #{@meals.first.name}")
+  end
+
+  it "returns a 404 if meal not found" do
+    delete "/api/v1/meals/100/foods/#{@meals.first.foods.first.id}"
+
+    expect(response.status).to eq(404)
+  end
+
+  it "returns a 404 if food not found" do
+    delete "/api/v1/meals/#{@meals.first.id}/foods/100"
+
+    expect(response.status).to eq(404)
   end
 
 end

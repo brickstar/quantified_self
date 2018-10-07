@@ -3,6 +3,7 @@ require 'rails_helper'
 describe "Meals API" do
   before(:each) do
     @meals = create_list(:meal, 3, :with_foods)
+    @food = create(:food)
   end
 
   it "sends a list of meals" do
@@ -40,4 +41,13 @@ describe "Meals API" do
 
     expect(response.status).to eq(404)
   end
+
+  it "can add food to a meal" do
+    expect(@meals.first.foods.count).to eq(3)
+
+    post "/api/v1/meals/#{@meals.first.id}/foods/#{@food.id}"
+
+    expect(@meals.first.foods.count).to eq(4)
+  end
+
 end

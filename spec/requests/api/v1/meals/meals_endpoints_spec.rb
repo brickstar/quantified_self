@@ -68,4 +68,18 @@ describe "Meals API" do
     expect(response.status).to eq(404)
   end
 
+  it "deletes a food from a meal" do
+    expect(@meals.first.foods.count).to eq(3)
+
+    delete "/api/v1/meals/#{@meals.first.id}/foods/#{@food.id}"
+
+    expect(@meals.first.foods.count).to eq(2)
+
+    json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response.status).to eq(201)
+
+    expect(json[:message]).to eq("Successfully added #{@food.name} to #{@meals.first.name}")
+  end
+
 end

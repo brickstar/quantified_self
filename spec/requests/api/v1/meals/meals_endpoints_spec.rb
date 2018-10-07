@@ -3,10 +3,7 @@ require 'rails_helper'
 describe "Meals API" do
   it "sends a list of meals" do
     meals = create_list(:meal, 3)
-    foods1 = create_list(:food, 1, meal: meals[0])
-    foods2 = create_list(:food, 2, meal: meals[1])
-    foods3 = create_list(:food, 3, meal: meals[2])
-
+binding.pry
     get '/api/v1/meals'
 
     expect(response).to be_successful

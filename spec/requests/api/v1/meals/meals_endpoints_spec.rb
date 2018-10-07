@@ -14,9 +14,8 @@ describe "Meals API" do
     meal = meals.first
 
     expect(meals.count).to eq(3)
-    expect(meals).to have_key(:name)
-    expect(meals).to have_key(:foods)
-    expect(meals).to have_key
+    expect(meal).to have_key(:name)
+    expect(meal).to have_key(:foods)
     expect(meal).to_not have_key(:created_at)
     expect(meal).to_not have_key(:updated_at)
   end

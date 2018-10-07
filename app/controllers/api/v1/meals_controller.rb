@@ -22,4 +22,14 @@ class Api::V1::MealsController < ApplicationController
       render status: 404
     end
   end
+
+  def destroy
+    meal_food = MealFood.includes(:meal, :food).find_by(meal_id: params[:meal_id], id: params[:id])
+    if meal_food
+      render json: { "message": "Successfully deleted #{meal_food.food.name} to #{meal_food.meal.name}" }, status: 201
+      meal_food.destroy
+    else
+      render status: 404
+    end
+  end
 end

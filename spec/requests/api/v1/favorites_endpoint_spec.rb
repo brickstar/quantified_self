@@ -8,10 +8,10 @@ describe "Favorites endpoint" do
     @meal3 = create(:meal, name: "meal3")
     @meal4 = create(:meal, name: "meal4")
 
-    @food1 = create(:food, name: 'dont care 1', calories: 200)
-    @food2 = create(:food, name: 'dont care 2', calories: 200)
-    @food3 = create(:food, name: 'dont care 3', calories: 200)
+    @food1 = create(:food, name: 'dont care', calories: 200)
+    @food2 = create(:food, name: 'dont care', calories: 200)
 
+    @food3 = create(:food, name: 'food3', calories: 200)
     @food4 = create(:food, name: 'food4', calories: 200)
     @food5 = create(:food, name: 'food5', calories: 200)
     @food6 = create(:food, name: 'food6', calories: 200)
@@ -43,7 +43,7 @@ describe "Favorites endpoint" do
     @mealfood15 = MealFood.create!(meal_id: @meal4.id, food_id: @food6.id)
   end
 
-  xit 'returns all foods for top three times eaten' do
+  it 'returns all foods for top three times eaten' do
     get '/api/v1/favorite_foods'
 
     expect(response).to be_successful

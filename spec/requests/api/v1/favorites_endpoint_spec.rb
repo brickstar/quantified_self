@@ -16,31 +16,31 @@ describe "Favorites endpoint" do
     @food5 = create(:food, name: 'food5', calories: 200)
     @food6 = create(:food, name: 'food6', calories: 200)
 
-    @mealfood1 = MealFood.create!(meal_id: @meal1.id, food_id: @food1.id)
+    @mealfood1 = MealFood.create(meal_id: @meal1.id, food_id: @food1.id)
 
-    @mealfood2 = MealFood.create!(meal_id: @meal1.id, food_id: @food2.id)
-    @mealfood3 = MealFood.create!(meal_id: @meal1.id, food_id: @food2.id)
+    @mealfood2 = MealFood.create(meal_id: @meal1.id, food_id: @food2.id)
+    @mealfood3 = MealFood.create(meal_id: @meal1.id, food_id: @food2.id)
 
-    @mealfood4 = MealFood.create!(meal_id: @meal1.id, food_id: @food3.id)
-    @mealfood5 = MealFood.create!(meal_id: @meal1.id, food_id: @food3.id)
-    @mealfood6 = MealFood.create!(meal_id: @meal1.id, food_id: @food3.id)
+    @mealfood4 = MealFood.create(meal_id: @meal1.id, food_id: @food3.id)
+    @mealfood5 = MealFood.create(meal_id: @meal1.id, food_id: @food3.id)
+    @mealfood6 = MealFood.create(meal_id: @meal1.id, food_id: @food3.id)
 
-    @mealfood7 = MealFood.create!(meal_id: @meal1.id, food_id: @food4.id)
-    @mealfood8 = MealFood.create!(meal_id: @meal1.id, food_id: @food4.id)
-    @mealfood9 = MealFood.create!(meal_id: @meal2.id, food_id: @food4.id)
-    @mealfood10 = MealFood.create!(meal_id: @meal3.id, food_id: @food4.id)
+    @mealfood7 = MealFood.create(meal_id: @meal1.id, food_id: @food4.id)
+    @mealfood8 = MealFood.create(meal_id: @meal1.id, food_id: @food4.id)
+    @mealfood9 = MealFood.create(meal_id: @meal2.id, food_id: @food4.id)
+    @mealfood10 = MealFood.create(meal_id: @meal3.id, food_id: @food4.id)
 
-    @mealfood11 = MealFood.create!(meal_id: @meal1.id, food_id: @food5.id)
-    @mealfood12 = MealFood.create!(meal_id: @meal2.id, food_id: @food5.id)
-    @mealfood13 = MealFood.create!(meal_id: @meal3.id, food_id: @food5.id)
-    @mealfood14 = MealFood.create!(meal_id: @meal4.id, food_id: @food5.id)
-    @mealfood15 = MealFood.create!(meal_id: @meal4.id, food_id: @food5.id)
+    @mealfood11 = MealFood.create(meal_id: @meal1.id, food_id: @food5.id)
+    @mealfood12 = MealFood.create(meal_id: @meal2.id, food_id: @food5.id)
+    @mealfood13 = MealFood.create(meal_id: @meal3.id, food_id: @food5.id)
+    @mealfood14 = MealFood.create(meal_id: @meal4.id, food_id: @food5.id)
+    @mealfood15 = MealFood.create(meal_id: @meal4.id, food_id: @food5.id)
 
-    @mealfood11 = MealFood.create!(meal_id: @meal1.id, food_id: @food6.id)
-    @mealfood12 = MealFood.create!(meal_id: @meal2.id, food_id: @food6.id)
-    @mealfood13 = MealFood.create!(meal_id: @meal3.id, food_id: @food6.id)
-    @mealfood14 = MealFood.create!(meal_id: @meal4.id, food_id: @food6.id)
-    @mealfood15 = MealFood.create!(meal_id: @meal4.id, food_id: @food6.id)
+    @mealfood11 = MealFood.create(meal_id: @meal1.id, food_id: @food6.id)
+    @mealfood12 = MealFood.create(meal_id: @meal2.id, food_id: @food6.id)
+    @mealfood13 = MealFood.create(meal_id: @meal3.id, food_id: @food6.id)
+    @mealfood14 = MealFood.create(meal_id: @meal4.id, food_id: @food6.id)
+    @mealfood15 = MealFood.create(meal_id: @meal4.id, food_id: @food6.id)
   end
 
   it 'returns all foods for top three times eaten' do

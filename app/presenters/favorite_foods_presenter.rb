@@ -14,7 +14,7 @@ class FavoriteFoodsPresenter
 
     def top_three_times_eaten
       Food.includes(:meals)
-        .where( times_eaten: Food.order(times_eaten: :desc).distinct.limit(3).pluck(:times_eaten))
+        .where(times_eaten: Food.order(times_eaten: :desc).distinct.limit(3).pluck(:times_eaten))
         .order(times_eaten: :desc)
     end
 end

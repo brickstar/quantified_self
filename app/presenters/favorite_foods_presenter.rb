@@ -1,6 +1,6 @@
 class FavoriteFoodsPresenter
   def favorites
-    thing = grouped_by_times_eaten.map do |times_eaten, foods|
+    grouped_by_times_eaten.map do |times_eaten, foods|
       { timesEaten: times_eaten,
         foods: foods.map { |food| { "name": food.name, "calories": food.calories, "mealsWhenEaten": food.meals.map { |meal| meal.name }.uniq } } }
     end

@@ -71,5 +71,5 @@ Removes a food from a meal
 
 ## Favorite Foods Endpoints
 `GET /api/v1/favorite_foods`<br>
-Returns top 3 foods by times eaten
+Returns all food objects containing top three times eaten attribute
 
